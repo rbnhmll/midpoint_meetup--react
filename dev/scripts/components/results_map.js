@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ResultsMap extends Component {
-  constructor() {
-    super();
-  }
-
-  render() {
-    return (
-      <div id='map'></div>
-    )
-  }
+const ResultsMap = () => {
+  return (
+    <div id='map'></div>
+  )
 }
-
 
 export default ResultsMap;
