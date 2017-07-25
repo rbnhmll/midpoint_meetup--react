@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Modal extends Component {
   constructor() {
     super();
-    console.log(this)
   }
   render() {
     if(!this.props.show_modal) {

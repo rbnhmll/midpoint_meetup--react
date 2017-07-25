@@ -8,8 +8,6 @@ import Modal from './components/modal';
 import ModalToggle from './components/modal_toggle';
 const scrollToElement = require('scroll-to-element');
 
-console.log('works!');
-
 class App extends Component {
   constructor() {
     super();
@@ -49,19 +47,15 @@ class App extends Component {
   }
 
   toggleModal() {
-    console.log("fire")
     if (!this.state.show_modal) {
-      console.log("show modal")
       this.setState({show_modal: true});
     } else {
-      console.log("hide modal")
       this.setState({show_modal: false});
     }
   }
 
   // Hide modal on click
   closeModal() {
-    console.log("close modal")
     this.setState({ show_modal: false });
   }
 
@@ -73,7 +67,6 @@ class App extends Component {
     });
 
     L.Icon.Default.imagePath = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/images/"
-    console.log(this.state.results)
     var self = this;
     this.state.results.forEach(function(result) {
       var v = result.venue;
