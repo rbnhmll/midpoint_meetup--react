@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Banner from './components/banner';
 import SearchForm from './components/search_form';
 import ResultsMap from './components/results_map';
 import Results from './components/results';
@@ -26,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="animated bounceInDown">Let's Meet <span>Half</span>way!</h1>
+        <Banner />
         <SearchForm results={this.state.searchResults} setResults={this.setResults} displayVenues={this.displayVenues} />
         <ResultsMap results={this.state.results} map={this.state.map} />
         {
