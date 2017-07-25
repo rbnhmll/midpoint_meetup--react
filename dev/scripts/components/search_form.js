@@ -6,9 +6,9 @@ class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      yourLocation: "100 queen st west toronto",
-      friendLocation: "154 Sorauren Ave. toronto",
-      venueType: "beer",
+      yourLocation: "",
+      friendLocation: "",
+      venueType: "",
       centerPtResult: "",
       clientId: "RUPFMKH0N5PWTIS43LH20C1AWZCMSRJOF02L1Q0PBXEVXIR0",
       clientSecret: "YRFJZOCG0J3RAJCLGTTAPORHLNBHRNO0X0DSBTBRNA21HMFS",

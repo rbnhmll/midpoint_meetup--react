@@ -6,6 +6,7 @@ import Results from './components/results';
 import SocialBox from './components/social_box';
 import Modal from './components/modal';
 import ModalToggle from './components/modal_toggle';
+const scrollToElement = require('scroll-to-element');
 
 console.log('works!');
 
@@ -65,6 +66,12 @@ class App extends Component {
   }
 
   displayVenues() {
+    scrollToElement('#map', {
+      offset: -15,
+      ease: 'linear',
+      duration: 500
+    });
+
     L.Icon.Default.imagePath = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/images/"
     console.log(this.state.results)
     var self = this;
