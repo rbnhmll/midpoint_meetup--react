@@ -24,4 +24,8 @@ const Results = (props) => {
   );
 };
 
+Results.propTypes = {
+  results: React.propTypes.obj,
+};
+
 export default Results;
