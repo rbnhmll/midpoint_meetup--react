@@ -6,14 +6,14 @@ class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      yourLocation: "",
-      friendLocation: "",
-      venueType: "",
-      centerPtResult: "",
-      clientId: "RUPFMKH0N5PWTIS43LH20C1AWZCMSRJOF02L1Q0PBXEVXIR0",
-      clientSecret: "YRFJZOCG0J3RAJCLGTTAPORHLNBHRNO0X0DSBTBRNA21HMFS",
-      mapBoxKey: "pk.eyJ1IjoicmJuaG1sbCIsImEiOiI3NjY4ZDk5NjFhMTYyMDMxMWFmMmM5YWEzMzlkMDgwZiJ9.Ep7u1zX_6SFI94jPki9O-w"
-    }
+      yourLocation: '',
+      friendLocation: '',
+      venueType: '',
+      centerPtResult: '',
+      clientId: 'RUPFMKH0N5PWTIS43LH20C1AWZCMSRJOF02L1Q0PBXEVXIR0',
+      clientSecret: 'YRFJZOCG0J3RAJCLGTTAPORHLNBHRNO0X0DSBTBRNA21HMFS',
+      mapBoxKey: 'pk.eyJ1IjoicmJuaG1sbCIsImEiOiI3NjY4ZDk5NjFhMTYyMDMxMWFmMmM5YWEzMzlkMDgwZiJ9.Ep7u1zX_6SFI94jPki9O-w',
+    };
 
     this.getUserInputs = this.getUserInputs.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,144 +25,156 @@ class SearchForm extends Component {
   render() {
     return (
       <form className="submitForm" onSubmit={this.getUserInputs}>
-        <div className="inputContainer">    
+        <div className="inputContainer">
           <div className="input input1">
             <label htmlFor="yourLocation" className="locationLabel">Your Location</label>
-            <input onChange={this.handleChange} value={this.state.yourLocation} type="text" name="yourLocation" className="yourLocation userInputField" placeholder="Your address (e.g. 100 Queen Street West, Toronto)" />
+            <input
+              onChange={this.handleChange}
+              value={this.state.yourLocation}
+              type="text" name="yourLocation"
+              className="yourLocation userInputField"
+              placeholder="Your address (e.g. 100 Queen Street West, Toronto)"
+            />
           </div>
           <div className="input input2">
-            <label htmlFor="friendLocation" className="locationLabel">Friend's location</label>
-            <input onChange={this.handleChange} value={this.state.friendLocation} type="text" name="friendLocation" className="friendLocation userInputField" placeholder="Friend's address (e.g. 1 Yonge Street, Toronto)" />
+            <label htmlFor="friendLocation" className="locationLabel">
+              Friend's location
+            </label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.friendLocation}
+              type="text" name="friendLocation"
+              className="friendLocation userInputField"
+              placeholder="Friend's address (e.g. 1 Yonge Street, Toronto)"
+            />
           </div>
         </div>
-          <div className="button-container  animated fadeIn">
-            <div className="chooserContainer">
-              <input checked={this.state.venueType === 'coffee'} onChange={this.handleChange} id="coffeeRadio" type="radio" name="venueType" value="coffee" />
-              <label htmlFor="coffeeRadio">Coffee</label>
-              <input checked={this.state.venueType === 'beer'} onChange={this.handleChange} id="beerRadio" type="radio" name="venueType" value="beer" />
-              <label htmlFor="beerRadio">Beer</label>
-            </div>
-            
-            <input type="submit" value="Meet up!" name="meetUp" className="submitBtn" />
+        <div className="button-container  animated fadeIn">
+          <div className="chooserContainer">
+            <input checked={this.state.venueType === 'coffee'} onChange={this.handleChange} id="coffeeRadio" type="radio" name="venueType" value="coffee" />
+            <label htmlFor="coffeeRadio">
+              Coffee
+            </label>
+            <input checked={this.state.venueType === 'beer'} onChange={this.handleChange} id="beerRadio" type="radio" name="venueType" value="beer" />
+            <label htmlFor="beerRadio">Beer</label>
           </div>
-
-        </form>
-    )
+          <input type="submit" value="Meet up!" name="meetUp" className="submitBtn" />
+        </div>
+      </form>
+    );
   }
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-  };
+      [e.target.name]: e.target.value,
+    });
+  }
 
   getUserInputs(e) {
     e.preventDefault();
     e.stopPropagation();
-    if (this.state.yourLocation == "" && this.state.friendLocation == "") {
-      alert("Please fill in the two location fields!");
-    }
-    else if (this.state.yourLocation == "") {
-      alert("Please fill in your location!");
-    }
-    else if (this.state.friendLocation == "") {
+    if (this.state.yourLocation === '' && this.state.friendLocation === '') {
+      alert('Please fill in the two location fields!');
+    } else if (this.state.yourLocation === '') {
+      alert('Please fill in your location!');
+    } else if (this.state.friendLocation === '') {
       alert("Please fill in your friend's location!");
-    }
-    else if ( this.state.venueType == ""  ) {
-      alert("Please choose either Coffee or Beer!");
-    }
-    else {
+    } else if (this.state.venueType === '') {
+      alert('Please choose either Coffee or Beer!');
+    } else {
       // $('html, body').animate({
       //     scrollTop: $("#map").offset().top
       // }, 800);
       // $(".resultsContainer").removeClass("hide").addClass("animated bounceInUp");
       this.convertToGeo();
-      }
-  };
+    }
+  }
 
   convertToGeo() {
-    const userEntry1 = this.state.yourLocation.split(" ");
-    const userEntry2 = this.state.friendLocation.split(" ");
+    const userEntry1 = this.state.yourLocation.split(' ');
+    const userEntry2 = this.state.friendLocation.split(' ');
     this.getGeocode(userEntry1, userEntry2);
-  };
+  }
 
   getGeocode(userEntry1, userEntry2) {
-    let self = this;
+    const self = this;
 
     function firstLocation() {
-      return Axios.get(`https://api.mapbox.com/v4/geocode/mapbox.places/${userEntry1}.json?access_token=${self.state.mapBoxKey}`
-        ).then(function(response) {
+      return Axios.get(`https://api.mapbox.com/v4/geocode/mapbox.places/${userEntry1}.json?access_token=${self.state.mapBoxKey}`)
+        .then((response) => {
           return response;
-        }).catch(function(error) {
+        }).catch((error) => {
           console.error(error);
           return error;
         });
     }
 
     function secondLocation() {
-      return Axios.get(`https://api.mapbox.com/v4/geocode/mapbox.places/${userEntry2}.json?access_token=${self.state.mapBoxKey}`
-        ).then(function(response) {
+      return Axios.get(`https://api.mapbox.com/v4/geocode/mapbox.places/${userEntry2}.json?access_token=${self.state.mapBoxKey}`)
+        .then((response) => {
           return response;
-        }).catch(function(error) {
+        }).catch((error) => {
           console.error(error);
           return error;
         });
     }
 
     Axios.all([firstLocation(), secondLocation()])
-      .then(Axios.spread(function(res1,res2){
+      .then(Axios.spread((res1, res2) => {
         const coords1 = res1.data.features[0].geometry.coordinates;
         const coords2 = res2.data.features[0].geometry.coordinates;
         // reverse the array order.
         coords1.reverse();
         coords2.reverse();
-        self.getMidpoint(coords1,coords2);
-    }));
-  };
+        self.getMidpoint(coords1, coords2);
+      }));
+  }
 
-  getMidpoint(coords1,coords2) {
+  getMidpoint(coords1, coords2) {
     const features = {
-      "type": "FeatureCollection",
-      "features": [
+      type: 'FeatureCollection',
+      features: [
         {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": coords1
-          }
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: coords1,
+          },
         },
         {
-          "type": "Feature",
-          "properties": {},
-          "geometry": {
-            "type": "Point",
-            "coordinates": coords2
-          }
-        }
-      ]
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: coords2,
+          },
+        },
+      ],
     };
     const centerPt = Turf.center(features);
     let centerPtResult = centerPt.geometry.coordinates;
-    
+
     centerPtResult = `${centerPtResult[0]},${centerPtResult[1]}`;
-    this.setState({centerPtResult});
+    this.setState({ centerPtResult });
     this.getVenues();
   }
 
   getVenues() {
-    var self = this;
-    if (this.state.venueType === "coffee") {
-      var sectionSelect = "coffee";
-      var querySelect = "coffee";
-    }
-    else if (this.state.venueType === "beer") {
-      var sectionSelect = "drinks";
-      var querySelect = "beer";
-    };
+    const self = this;
+    let sectionSelect;
+    let querySelect;
 
-  //Foursquare API call
-    Axios.get("https://api.foursquare.com/v2/venues/explore", {
+    if (this.state.venueType === 'coffee') {
+      sectionSelect = 'coffee';
+      querySelect = 'coffee';
+    } else if (this.state.venueType === 'beer') {
+      sectionSelect = 'drinks';
+      querySelect = 'beer';
+    }
+
+    // Foursquare API call
+    Axios.get('https://api.foursquare.com/v2/venues/explore', {
       params: {
         ll: this.state.centerPtResult,
         client_id: this.state.clientId,
@@ -175,14 +187,14 @@ class SearchForm extends Component {
         query: querySelect,
         limit: 6,
         sortByDistance: 1,
-        format: "json"
-      }
-    }).then(function(res3) {
-      var venueResult = res3.data.response.groups[0].items;
+        format: 'json',
+      },
+    }).then((res3) => {
+      const venueResult = res3.data.response.groups[0].items;
       self.showResults = true;
       self.props.setResults(venueResult);
       // self.props.displayVenues();
-    }).catch(function(error) {
+    }).catch((error) => {
       console.error(error);
     });
   }
