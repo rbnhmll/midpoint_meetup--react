@@ -7,6 +7,7 @@ import Results from './components/results';
 import SocialBox from './components/social_box';
 import Modal from './components/modal';
 import ModalToggle from './components/modal_toggle';
+import Login from './components/login';
 const scrollToElement = require('scroll-to-element');
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Login />
         <Banner />
         <SearchForm results={this.state.searchResults} setResults={this.setResults} displayVenues={this.displayVenues} />
         <ResultsMap results={this.state.results} map={this.state.map} />
