@@ -12,40 +12,40 @@ const concat = require('gulp-concat');
 const historyApiFallback = require('connect-history-api-fallback');
 
 gulp.task('styles', () => {
-    return gulp.src('./dev/styles/**/*.sass')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(concat('style.css'))
-        .pipe(gulp.dest('./public/styles'))
+  return gulp.src('./dev/styles/**/*.sass')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('style.css'))
+    .pipe(gulp.dest('./public/styles'));
 });
 
 gulp.task('js', () => {
-    browserify('dev/scripts/app.js', {debug: true})
-        .transform('babelify', {
-            sourceMaps: true,
-            presets: ['es2015','react']
-        })
-        .bundle()
-        .on('error',notify.onError({
-            message: "Error: <%= error.message %>",
-            title: 'Error in JS 💀'
-        }))
-        .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(gulp.dest('public/scripts'))
-        .pipe(reload({stream:true}));
+  browserify('dev/scripts/app.js', { debug: true })
+  .transform('babelify', {
+    sourceMaps: true,
+    presets: ['es2015', 'react'],
+  })
+  .bundle()
+  .on('error', notify.onError({
+    message: 'Error: <%= error.message %>',
+    title: 'Error in JS 💀',
+  }))
+  .pipe(source('app.js'))
+  .pipe(buffer())
+  .pipe(gulp.dest('public/scripts'))
+  .pipe(reload({ stream: true }));
 });
 
 gulp.task('bs', () => {
-    browserSync.init({
-        server: {
-            baseDir: './'
-        },
-        middleware: [historyApiFallback()]
-    });
+  browserSync.init({
+    server: {
+      baseDir: './',
+    },
+    middleware: [historyApiFallback()],
+  });
 });
 
-gulp.task('default', ['js','bs', 'styles'], () => {
-    gulp.watch('dev/**/*.js',['js']);
-    gulp.watch('dev/**/*.sass',['styles']);
-    gulp.watch('./public/styles/style.css',reload);
+gulp.task('default', ['js', 'bs', 'styles'], () => {
+  gulp.watch('dev/**/*.js', ['js']);
+  gulp.watch('dev/**/*.sass', ['styles']);
+  gulp.watch('./public/styles/style.css', reload);
 });
