@@ -25,6 +25,24 @@ class App extends Component {
     this.displayVenues = this.displayVenues.bind(this);
   }
 
+  componentDidMount() {
+    // Initialize mapbox
+    var map = L.map('map').setView([43.65323,-79.38318
+    ], 12);
+
+    // Disable scrolling when hovering on map
+    map.scrollWheelZoom.disable();
+
+    // Some Mapbox specifics for on load [suplied by mapbox]
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        maxZoom: 18,
+        id: 'rbnhmll.n1oca4ci',
+        accessToken: "pk.eyJ1IjoicmJuaG1sbCIsImEiOiI3NjY4ZDk5NjFhMTYyMDMxMWFmMmM5YWEzMzlkMDgwZiJ9.Ep7u1zX_6SFI94jPki9O-w"
+    }).addTo(map);
+    
+    this.setState({ map });
+  }
+
   render() {
     return (
       <div>
@@ -77,24 +95,6 @@ class App extends Component {
       L.marker([v.location.lat, v.location.lng]).addTo(self.state.map).bindPopup(v.name + ":" + "<br>" + address);
     });
     this.state.map.setView([this.state.results[0].venue.location.lat, this.state.results[0].venue.location.lng], 15);
-  }
-
-  componentDidMount() {
-    // Initialize mapbox
-    var map = L.map('map').setView([43.65323,-79.38318
-    ], 12);
-
-    // Disable scrolling when hovering on map
-    map.scrollWheelZoom.disable();
-
-    // Some Mapbox specifics for on load [suplied by mapbox]
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        maxZoom: 18,
-        id: 'rbnhmll.n1oca4ci',
-        accessToken: "pk.eyJ1IjoicmJuaG1sbCIsImEiOiI3NjY4ZDk5NjFhMTYyMDMxMWFmMmM5YWEzMzlkMDgwZiJ9.Ep7u1zX_6SFI94jPki9O-w"
-    }).addTo(map);
-    
-    this.setState({ map });
   }
 }
 

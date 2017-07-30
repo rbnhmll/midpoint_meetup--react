@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Results = (props) => {
   const results = props.results;
@@ -25,7 +26,7 @@ const Results = (props) => {
 };
 
 Results.propTypes = {
-  results: React.propTypes.obj,
+  results: PropTypes.object,
 };
 
 export default Results;
