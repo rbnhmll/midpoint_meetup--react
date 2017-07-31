@@ -26,7 +26,7 @@ const Results = (props) => {
 };
 
 Results.propTypes = {
-  results: PropTypes.object,
+  results: PropTypes.array,
 };
 
 export default Results;

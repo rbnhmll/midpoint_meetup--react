@@ -20,7 +20,6 @@
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
-    "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
@@ -31,6 +30,7 @@
     "npm": "^5.3.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "scroll-to-element": "^2.0.0",
     "turf": "^3.0.14"
   }
