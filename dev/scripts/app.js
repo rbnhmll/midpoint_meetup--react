@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Banner from './components/banner';
 import SearchForm from './components/search_form';
 import ResultsMap from './components/results_map';
@@ -113,4 +112,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
