@@ -6,7 +6,6 @@ import Results from './components/results';
 import SocialBox from './components/social_box';
 import Modal from './components/modal';
 import ModalToggle from './components/modal_toggle';
-import Login from './components/login';
 
 const scrollToElement = require('scroll-to-element');
 // Init Firebase
@@ -91,7 +90,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Login />
         <Banner />
         <SearchForm
           results={this.state.searchResults}
