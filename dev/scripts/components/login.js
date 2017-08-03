@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router,
+  Route, Link } from 'react-router-dom';
+
+import Banner from './banner';
 
 class Login extends Component {
   constructor() {
@@ -38,6 +42,7 @@ class Login extends Component {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((success) => {
         console.log(`Logged in as ${success.email}`);
+        window.location = '/';
       }), (error) => {
         console.log(error);
     }
@@ -63,6 +68,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <Banner />
         <div className="create-user">
           <form onSubmit={event => this.createUser(event)}>
             <input type="text" placeholder="Please enter your e-mail address" onChange={event => this.handleChange(event, 'createEmail')} />
@@ -84,6 +90,7 @@ class Login extends Component {
             </form>
           </div>
         }
+        <Link to="/">Home</Link>
       </div>
     );
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router,
+  Route, Link } from 'react-router-dom';
 import Banner from './components/banner';
 import SearchForm from './components/search_form';
 import ResultsMap from './components/results_map';
@@ -105,6 +107,7 @@ class App extends Component {
         <SocialBox />
         <ModalToggle toggleModal={this.toggleModal} />
         <Modal show_modal={this.state.show_modal} closeModal={this.closeModal} />
+        <Link to="/login">Login</Link>
       </div>
     );
   }

@@ -9,9 +9,8 @@ const Root = () => {
   return (
     <Router>
       <div>
-        <Link to="/login">Login</Link>
-        <Route path="/login" component={Login} />
-        <Route path="/" component={App} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={App} />
       </div>
     </Router>
   );
