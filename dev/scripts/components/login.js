@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router,
-  Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Banner from './banner';
 
@@ -40,12 +39,12 @@ class Login extends Component {
     const password = this.state.loginPassword;
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((success) => {
-        console.log(`Logged in as ${success.email}`);
-        window.location = '/';
-      }), (error) => {
-        console.log(error);
-    }
+    .then((success) => {
+      console.log(`Logged in as ${success.email}`);
+      window.location = '/';
+    }), (error) => {
+      console.log(error);
+    };
   }
 
   signOut() {
